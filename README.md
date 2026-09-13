@@ -51,9 +51,9 @@ Deal a shuffled deck, drag legal tableau runs with the mouse, draw from the stoc
 <BR><BR>
 ## Release Workflow
 
-1. Publish a GitHub Release.
+1. Push release-ready changes to `main`.
 2. Wait for `ReleaseWebBuildToGitHubPages` to deploy the web export.
-3. Open the [Live Demo](https://samuelasherrivello.github.io/usagi-solitaire/).
+3. Confirm the [Live Demo](https://samuelasherrivello.github.io/usagi-solitaire/), then publish the GitHub Release.
 
 <BR><BR>
 ## Stack
