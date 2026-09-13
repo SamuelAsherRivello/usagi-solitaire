@@ -7,6 +7,10 @@ Usagi Solitaire is a Klondike-style solitaire game created with the [Usagi Engin
 
 Deal a shuffled deck, drag legal tableau runs with the mouse, draw from the stock when no board moves are available, and build all four foundations from ace to king.
 
+## Live Demo
+
+[Play Usagi Solitaire in your browser](https://samuelasherrivello.github.io/usagi-solitaire/)
+
 <BR><BR>
 ## Pics
 
@@ -43,6 +47,13 @@ Deal a shuffled deck, drag legal tableau runs with the mouse, draw from the stoc
 | Stock | Draws one card to the waste pile with no animation. Waste recycling is not used. |
 | Foundations | Aces start foundation piles, then cards build upward by matching suit. |
 | Win | Completing all four foundations shows `status: you won` in the UI. |
+
+<BR><BR>
+## Release Workflow
+
+1. Publish a GitHub Release.
+2. Wait for `ReleaseWebBuildToGitHubPages` to deploy the web export.
+3. Open the [Live Demo](https://samuelasherrivello.github.io/usagi-solitaire/).
 
 <BR><BR>
 ## Stack

@@ -1,0 +1,53 @@
+name: ReleaseWebBuildToGitHubPages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Usagi 1.0.0
+        run: |
+          curl -fsSL https://usagiengine.com/install.sh | sh -s -- v1.0.0
+          echo "$HOME/.usagi/bin" >> "$GITHUB_PATH"
+
+      - name: Export web build
+        run: usagi export . --target web
+
+      - name: Prepare GitHub Pages artifact
+        run: |
+          web_export="$(find export -maxdepth 1 -name '*-web.zip' -print -quit)"
+          test -n "$web_export"
+          mkdir site
+          unzip -q "$web_export" -d site
+          test -f site/index.html
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload web build
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
