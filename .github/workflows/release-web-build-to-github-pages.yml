@@ -34,7 +34,7 @@ jobs:
 
       - name: Prepare GitHub Pages artifact
         run: |
-          web_export="$(find export -maxdepth 1 -name '*-web.zip' -print -quit)"
+          web_export="$(find . -maxdepth 1 -name '*-web.zip' -print -quit)"
           test -n "$web_export"
           mkdir site
           unzip -q "$web_export" -d site
